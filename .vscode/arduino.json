@@ -1,5 +1,6 @@
 {
     "programmer": "AVRISP mkII",
     "board": "arduino:avr:uno",
-    "sketch": "Arkadespil\\Arkadespil.ino"
+    "sketch": "Arkadespil\\Arkadespil.ino",
+    "port": "COM6"
 }
