@@ -1,11 +1,15 @@
 
 const int dly = 100;
 const int dl = 1; 
-const int inputXPin = 10;
-const int inputYPin = 9;
-const int inputKnapPin = 8;
-
-
+const int inputXPin = 4;
+const int inputYPin = 3;
+const int inputKnapPin = 2;
+const int toggelPin = 10;
+const int APin = 9;
+const int BPin = 8;
+const int CPin = 7;
+const int DPin = 6;
+const int InhibitPin = 5;
 
 byte red1;
 byte red2;
@@ -40,7 +44,48 @@ void setup() {
   blue4 = B11111110;
   row1 = B00000001;
 }
-
+void swich1(){
+  digitalWrite(APin, LOW);
+  digitalWrite(BPin, LOW);
+  digitalWrite(CPin, LOW);
+  digitalWrite(InhibitPin, LOW);   
+}
+void swich2(){
+  digitalWrite(APin, HIGH);
+  digitalWrite(BPin, LOW);
+  digitalWrite(CPin, LOW);
+  digitalWrite(InhibitPin, LOW);   
+}
+void swich3(){
+  digitalWrite(APin, LOW);
+  digitalWrite(BPin, HIGH);
+  digitalWrite(CPin, LOW);
+  digitalWrite(InhibitPin, LOW);   
+}
+void swich4(){
+  digitalWrite(APin, HIGH);
+  digitalWrite(BPin, HIGH);
+  digitalWrite(CPin, LOW);
+  digitalWrite(InhibitPin, LOW);   
+}
+void swich5(){
+  digitalWrite(APin, LOW);
+  digitalWrite(BPin, LOW);
+  digitalWrite(CPin, HIGH);
+  digitalWrite(InhibitPin, LOW);   
+}
+void swich6(){
+  digitalWrite(APin, LOW);
+  digitalWrite(BPin, HIGH);
+  digitalWrite(CPin, HIGH);
+  digitalWrite(InhibitPin, LOW);   
+}
+void swichReset(){
+  digitalWrite(APin, HIGH);
+  digitalWrite(BPin, HIGH);
+  digitalWrite(CPin, HIGH);
+  digitalWrite(InhibitPin, HIGH);
+}
 void loop() {
 
 red1 = red1<<1;
