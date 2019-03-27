@@ -38,52 +38,146 @@ void setup() {
   pinMode(inputXPin, INPUT);
   pinMode(inputYPin, INPUT);
   pinMode(inputKnapPin, INPUT);
+  pinMode(APin, OUTPUT);
+  pinMode(BPin, OUTPUT);
+  pinMode(CPin, OUTPUT);
+  pinMode(DPin, OUTPUT);
+  pinMode(InhibitPin, OUTPUT);
   Serial.begin (9600);
-  red1 = B11111110;
-  green1 = B11111110;
-  blue4 = B11111110;
-  row1 = B00000001;
+  red1 = B01111111;
+  red2 = B01111111;
+  red3 = B01111111;
+  red4 = B01111111;
+  green1 = B01111111;
+  green2 = B01111111;
+  green3 = B01111111;
+  green4 = B01111111;
+  blue1 = B01111111;
+  blue2 = B01111111;
+  blue3 = B01111111;
+  blue4 = B01111111;
+  row1 = B10000000;
+  row2 = B10000000;
+  row3 = B10000000;
+  row4 = B10000000;
 }
 void swich1(){
   digitalWrite(APin, LOW);
   digitalWrite(BPin, LOW);
   digitalWrite(CPin, LOW);
+  digitalWrite(DPin, LOW);
   digitalWrite(InhibitPin, LOW);   
 }
 void swich2(){
   digitalWrite(APin, HIGH);
   digitalWrite(BPin, LOW);
   digitalWrite(CPin, LOW);
+  digitalWrite(DPin, LOW);
   digitalWrite(InhibitPin, LOW);   
 }
 void swich3(){
   digitalWrite(APin, LOW);
   digitalWrite(BPin, HIGH);
   digitalWrite(CPin, LOW);
+  digitalWrite(DPin, LOW);
   digitalWrite(InhibitPin, LOW);   
 }
 void swich4(){
   digitalWrite(APin, HIGH);
   digitalWrite(BPin, HIGH);
   digitalWrite(CPin, LOW);
+  digitalWrite(DPin, LOW);
   digitalWrite(InhibitPin, LOW);   
 }
 void swich5(){
   digitalWrite(APin, LOW);
   digitalWrite(BPin, LOW);
   digitalWrite(CPin, HIGH);
+  digitalWrite(DPin, LOW);
   digitalWrite(InhibitPin, LOW);   
 }
 void swich6(){
+  digitalWrite(APin, HIGH);
+  digitalWrite(BPin, LOW);
+  digitalWrite(CPin, HIGH);
+  digitalWrite(DPin, LOW);
+  digitalWrite(InhibitPin, LOW);   
+}
+void swich7(){
   digitalWrite(APin, LOW);
   digitalWrite(BPin, HIGH);
   digitalWrite(CPin, HIGH);
-  digitalWrite(InhibitPin, LOW);   
+  digitalWrite(DPin, LOW);
+  digitalWrite(InhibitPin, LOW);
 }
-void swichReset(){
-  digitalWrite(APin, HIGH);
+void swich8(){
+  digitalWrite(APin, LOW);
   digitalWrite(BPin, HIGH);
   digitalWrite(CPin, HIGH);
+  digitalWrite(DPin, LOW);
+  digitalWrite(InhibitPin, LOW);
+}
+void swich9(){
+  digitalWrite(APin, LOW);
+  digitalWrite(BPin, HIGH);
+  digitalWrite(CPin, HIGH);
+  digitalWrite(DPin, LOW);
+  digitalWrite(InhibitPin, LOW);
+}
+void swich10(){
+  digitalWrite(APin, LOW);
+  digitalWrite(BPin, HIGH);
+  digitalWrite(CPin, HIGH);
+  digitalWrite(DPin, LOW);
+  digitalWrite(InhibitPin, LOW);
+}
+void swich11(){
+  digitalWrite(APin, LOW);
+  digitalWrite(BPin, HIGH);
+  digitalWrite(CPin, HIGH);
+  digitalWrite(DPin, LOW);
+  digitalWrite(InhibitPin, LOW);
+}
+void swich12(){
+  digitalWrite(APin, LOW);
+  digitalWrite(BPin, HIGH);
+  digitalWrite(CPin, HIGH);
+  digitalWrite(DPin, LOW);
+  digitalWrite(InhibitPin, LOW);
+}
+void swich13(){
+  digitalWrite(APin, LOW);
+  digitalWrite(BPin, HIGH);
+  digitalWrite(CPin, HIGH);
+  digitalWrite(DPin, LOW);
+  digitalWrite(InhibitPin, LOW);
+}
+void swich14(){
+  digitalWrite(APin, LOW);
+  digitalWrite(BPin, HIGH);
+  digitalWrite(CPin, HIGH);
+  digitalWrite(DPin, LOW);
+  digitalWrite(InhibitPin, LOW);
+}
+void swich15(){
+  digitalWrite(APin, LOW);
+  digitalWrite(BPin, HIGH);
+  digitalWrite(CPin, HIGH);
+  digitalWrite(DPin, LOW);
+  digitalWrite(InhibitPin, LOW);
+}
+void swich16(){
+  digitalWrite(APin, LOW);
+  digitalWrite(BPin, HIGH);
+  digitalWrite(CPin, HIGH);
+  digitalWrite(DPin, LOW);
+  digitalWrite(InhibitPin, LOW);
+}
+void swichReset(){
+  digitalWrite(APin, LOW);
+  digitalWrite(BPin, LOW);
+  digitalWrite(CPin, LOW);
+  digitalWrite(DPin, LOW);
   digitalWrite(InhibitPin, HIGH);
 }
 void loop() {
@@ -96,14 +190,14 @@ green1 = green1<<1;
 green2 = green2<<1;
 green3 = green3<<1;
 green4 = green4<<1;
-blue1 = blue4<<1;
-blue2 = blue4<<2;
-blue3 = blue4<<3;
-blue4 = blue4<<4;
+blue1 = blue1<<1;
+blue2 = blue2<<1;
+blue3 = blue3<<1;
+blue4 = blue4<<1;
 row1 = row1<<1;
-row2 = row2<<2;
-row3 = row3<<3;
-row4 = row4<<4;
+row2 = row2<<1;
+row3 = row3<<1;
+row4 = row4<<1;
 
 
     digitalWrite(latchPin,LOW);
