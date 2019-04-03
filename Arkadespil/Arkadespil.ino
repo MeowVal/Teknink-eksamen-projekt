@@ -1,3 +1,4 @@
+#include <LiquidCrystal.h>
 
 const int dly = 100;
 const int dl = 1; 
@@ -31,6 +32,8 @@ byte row4;
 const int  dataPin = 12;
 const int  clockPin = 13;
 const int  latchPin = 11; 
+const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 void setup() {
   pinMode(dataPin, OUTPUT);
   pinMode(clockPin, OUTPUT);
