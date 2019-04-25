@@ -12,23 +12,59 @@ const int CPin = 7;
 const int DPin = 6;
 const int InhibitPin = 5;
 
-byte red1;
-byte red2;
-byte red3;
-byte red4;
-byte green1;
-byte green2;
-byte green3;
-byte green4;
-byte blue1;
-byte blue2;
-byte blue3;
-byte blue4;
-byte row1;
-byte row2;
-byte row3;
-byte row4;
-
+byte dataRED1;
+byte dataROW1;
+byte dataGREEN1;
+byte dataBLUE1;
+byte dataRED2;
+byte dataROW2;
+byte dataGREEN2;
+byte dataBLUE2;
+byte dataRED3;
+byte dataROW3;
+byte dataGREEN3;
+byte dataBLUE3;
+byte dataRED4;
+byte dataROW4;
+byte dataGREEN4;
+byte dataBLUE4;
+byte dataArrayColor[9];
+byte dataArrayROW[9];
+boolean X1 = false;
+boolean X2 = false;
+boolean X3 = false;
+boolean X4 = false;
+boolean X5 = false;
+boolean X6 = false;
+boolean X7 = false;
+boolean X8 = false;
+boolean X9 = false;
+boolean X10 = false;
+boolean X11 = false;
+boolean X12 = false;
+boolean X13 = false;
+boolean X14 = false;
+boolean X15 = false;
+boolean X16 = false;
+boolean red = false;
+boolean green = false;
+boolean blue = false;
+boolean y1 = false;
+boolean y2 = false;
+boolean y3 = false;
+boolean y4 = false;
+boolean y5 = false;
+boolean y6 = false;
+boolean y7 = false;
+boolean y8 = false;
+boolean y9 = false;
+boolean y10 = false;
+boolean y11 = false;
+boolean y12 = false;
+boolean y13 = false;
+boolean y14 = false;
+boolean y15 = false;
+boolean y16 = false;
 const int  dataPin = 12;
 const int  clockPin = 13;
 const int  latchPin = 11; 
@@ -55,24 +91,39 @@ void setup() {
   // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
   // Print a message to the LCD.
-  lcd.print("hello, world!");
+  lcd.print("hvor langsom du har været:");
   Serial.begin (9600);
-  red1 = B01111111;
-  red2 = B01111111;
-  red3 = B01111111;
-  red4 = B01111111;
-  green1 = B01111111;
-  green2 = B01111111;
-  green3 = B01111111;
-  green4 = B01111111;
-  blue1 = B01111111;
-  blue2 = B01111111;
-  blue3 = B01111111;
-  blue4 = B01111111;
-  row1 = B10000000;
-  row2 = B10000000;
-  row3 = B10000000;
-  row4 = B10000000;
+  dataArrayROW[0] = 0xFF; //11111111
+  dataArrayROW[1] = 0xFE; //11111110
+  dataArrayROW[2] = 0xFC; //11111100
+  dataArrayROW[3] = 0xF8; //11111000
+  dataArrayROW[4] = 0xF0; //11110000
+  dataArrayROW[5] = 0xE0; //11100000
+  dataArrayROW[6] = 0xC0; //11000000
+  dataArrayROW[7] = 0x80; //10000000
+  dataArrayROW[8] = 0x00; //00000000
+  
+  
+  dataArrayColor[0] = 0x00; //00000000
+  dataArrayColor[1] = 0x01; //00000001
+  dataArrayColor[2] = 0x03; //00000011
+  dataArrayColor[3] = 0x07; //00000111
+  dataArrayColor[4] = 0x0F; //00001111
+  dataArrayColor[5] = 0x1F; //00011111
+  dataArrayColor[6] = 0x3F; //00111111
+  dataArrayColor[7] = 0x7F; //01111111
+  dataArrayColor[8] = 0xFF; //11111111
+  dataArrayColor[9] = 0xFE; //11111110
+  dataArrayColor[10] = 0xFC; //11111100
+  dataArrayColor[11] = 0xF8; //11111000
+  dataArrayColor[12] = 0xF0; //11110000
+  dataArrayColor[13] = 0xE0; //11100000
+  dataArrayColor[14] = 0xC0; //11000000
+  dataArrayColor[15] = 0x80; //10000000
+  dataArrayColor[16] = 0xFD; //11111101
+  dataArrayColor[16] = 0xFD; //11111101
+
+
 }
 void swich1(){
   digitalWrite(APin, LOW);
@@ -200,48 +251,86 @@ void loop() {
   // print the number of seconds since reset:
   lcd.print(millis() / 1000);
   
-red1 = red1<<1;
-red2 = red2<<1;
-red3 = red3<<1;
-red4 = red4<<1;
-green1 = green1<<1;
-green2 = green2<<1;
-green3 = green3<<1;
-green4 = green4<<1;
-blue1 = blue1<<1;
-blue2 = blue2<<1;
-blue3 = blue3<<1;
-blue4 = blue4<<1;
-row1 = row1<<1;
-row2 = row2<<1;
-row3 = row3<<1;
-row4 = row4<<1;
-
-
+if (red && X1)
+{
+//dataRED1 = x1();
+}
+if (y1)
+{
+  //dataROW1 = 0x01;
+}
+if (green && X1)
+{
+  //dataGREEN1 = 0xFE;
+}
+if (blue)
+{
+  //dataBLUE1 = 0xFE;
+}
+  dataROW1 = dataArrayROW[6];
+  dataRED1 = dataArrayColor[0];
+  dataGREEN1 = dataArrayColor[1];
+  dataBLUE1 = dataArrayColor[1];
+  dataROW2 = dataArrayROW[7];
+  dataRED2 = dataArrayColor[1];
+  dataGREEN2 = dataArrayColor[1];
+  dataBLUE2 = dataArrayColor[1];
+  dataROW3 = dataArrayROW[7];
+  dataRED3 = dataArrayColor[1];
+  dataGREEN3 = dataArrayColor[1];
+  dataBLUE3 = dataArrayColor[1];
+  dataROW4 = dataArrayColor[1];
+  dataRED4 = dataArrayROW[7];
+  dataGREEN4 = dataArrayColor[1];
+  dataBLUE4 = dataArrayColor[1];
+  delay(100);
+  digitalWrite(rowLatchPin, LOW);
+    delayMicroseconds(dly);
+    shiftOut(rowDataPin,rowClockPin,MSBFIRST,B10000000);
+    shiftOut(rowDataPin,rowClockPin,MSBFIRST,B10000000);
+    shiftOut(rowDataPin,rowClockPin,MSBFIRST,B10000000);
+    shiftOut(rowDataPin,rowClockPin,MSBFIRST,B10000000);
+    delayMicroseconds(dly);
+    digitalWrite(rowLatchPin,HIGH);
+     Serial.print("ROW: ");
+    Serial.println(dataROW1,BIN);
+ 
     digitalWrite(latchPin,LOW);
     delayMicroseconds(dly);
-    shiftOut(dataPin,clockPin,MSBFIRST,red1);
-    shiftOut(dataPin,clockPin,MSBFIRST,red2); 
-    shiftOut(dataPin,clockPin,MSBFIRST,red3);
-    shiftOut(dataPin,clockPin,MSBFIRST,red4);
-    shiftOut(dataPin,clockPin,MSBFIRST,green1);
-    shiftOut(dataPin,clockPin,MSBFIRST,green2);
-    shiftOut(dataPin,clockPin,MSBFIRST,green3);
-    shiftOut(dataPin,clockPin,MSBFIRST,green4);
-    shiftOut(dataPin,clockPin,MSBFIRST,blue1);
-    shiftOut(dataPin,clockPin,MSBFIRST,blue2);
-    shiftOut(dataPin,clockPin,MSBFIRST,blue3);
-    shiftOut(dataPin,clockPin,MSBFIRST,blue4);
+    shiftOut(dataPin,clockPin,MSBFIRST,dataBLUE4);
+    shiftOut(dataPin,clockPin,MSBFIRST,dataBLUE3); 
+    shiftOut(dataPin,clockPin,MSBFIRST,dataBLUE2);
+    shiftOut(dataPin,clockPin,MSBFIRST,dataBLUE1);
+    shiftOut(dataPin,clockPin,MSBFIRST,dataGREEN4);
+    shiftOut(dataPin,clockPin,MSBFIRST,dataGREEN3);
+    shiftOut(dataPin,clockPin,MSBFIRST,dataGREEN2);
+    shiftOut(dataPin,clockPin,MSBFIRST,dataGREEN1);
+    shiftOut(dataPin,clockPin,MSBFIRST,B11111110);
+    shiftOut(dataPin,clockPin,MSBFIRST,B11111110);
+    shiftOut(dataPin,clockPin,MSBFIRST,B11111110);
+    shiftOut(dataPin,clockPin,MSBFIRST,B11111110);
     delayMicroseconds(dly);
     digitalWrite(latchPin,HIGH);
-    digitalWrite(rowLatchPin, HIGH);
-    delayMicroseconds(dly);
-    shiftOut(rowDataPin,rowClockPin,MSBFIRST,row1);
-    shiftOut(rowDataPin,rowClockPin,MSBFIRST,row2);
-    shiftOut(rowDataPin,rowClockPin,MSBFIRST,row3);
-    shiftOut(rowDataPin,rowClockPin,MSBFIRST,row4);
-    delayMicroseconds(dly);
-    digitalWrite(rowlatchPin,HIGH);
     Serial.print("red1: ");
-    Serial.println(red1);
+    Serial.println(dataRED1,BIN);
+
+    Serial.print("red1: ");
+    Serial.println(dataRED1);
 }
+void x1()
+{
+  return 0xFE;
+}
+void x2()
+{
+  return 0xFD;
+}
+void x3()
+{
+  return 0xFB;
+}
+void x4()
+{
+  return 0xF7;
+}
+
