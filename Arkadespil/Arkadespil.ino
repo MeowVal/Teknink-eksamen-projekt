@@ -104,25 +104,30 @@ void setup() {
   dataArrayROW[8] = 0x00; //00000000
   
   
-  dataArrayColor[0] = 0x00; //00000000
-  dataArrayColor[1] = 0x01; //00000001
-  dataArrayColor[2] = 0x03; //00000011
-  dataArrayColor[3] = 0x07; //00000111
-  dataArrayColor[4] = 0x0F; //00001111
-  dataArrayColor[5] = 0x1F; //00011111
-  dataArrayColor[6] = 0x3F; //00111111
-  dataArrayColor[7] = 0x7F; //01111111
-  dataArrayColor[8] = 0xFF; //11111111
-  dataArrayColor[9] = 0xFE; //11111110
-  dataArrayColor[10] = 0xFC; //11111100
-  dataArrayColor[11] = 0xF8; //11111000
+  dataArrayColor[0] = 0x00; //00000000 = 0
+  dataArrayColor[1] = 0x01; //00000001 = 1
+  dataArrayColor[2] = 0x03; //00000011 = 3
+  dataArrayColor[3] = 0x07; //00000111 = 7
+  dataArrayColor[4] = 0x0F; //00001111 = 15
+  dataArrayColor[5] = 0x1F; //00011111 = 31
+  dataArrayColor[6] = 0x3F; //00111111 = 63
+  dataArrayColor[7] = 0x7F; //01111111 = 127
+  dataArrayColor[8] = 0xFF; //11111111 = 255
+  dataArrayColor[9] = 0xFE; //11111110 = 254
+  dataArrayColor[10] = 0xFC; //11111100 = 252
+  dataArrayColor[11] = 0xF8; //11111000 = 248
   dataArrayColor[12] = 0xF0; //11110000
   dataArrayColor[13] = 0xE0; //11100000
   dataArrayColor[14] = 0xC0; //11000000
   dataArrayColor[15] = 0x80; //10000000
   dataArrayColor[16] = 0xFD; //11111101
   dataArrayColor[16] = 0xFD; //11111101
-
+  dataArrayColor[17] = 0xFB; //11111011
+  dataArrayColor[18] = 0xF7; //11110111
+  dataArrayColor[19] = 0xEF; //11101111
+  dataArrayColor[20] = 0xDF; //11011111
+  dataArrayColor[21] = 0xBF; //10111111
+  dataArrayColor[22] = 0xFA; //11111010
 
 }
 void swich1(){
