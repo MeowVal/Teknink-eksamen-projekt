@@ -239,19 +239,24 @@ void loop() {
 x = 0b0000001111000000;
 y = 88;
 RGB = 0x4;
-  	byte x1 = (lowByte(x) !=0 && lowByte(y)!=0) ? lowByte(x) : 0;
-  byte x2 = (highByte(x) !=0 && lowByte(y)!=0)? highByte(x) : 0;
-  byte x3 = (lowByte(x) !=0 && highByte(y)!=0) ? lowByte(x) : 0; 
-  byte x4 = (highByte(x) !=0 && highByte(y)!=0) ? highByte(x) : 0;
-  byte y1 = (lowByte(x) !=0 && lowByte(y)!=0)  ? lowByte(y) : 0;
-  byte y2 = (highByte(x) !=0 && lowByte(y)!=0) ? lowByte(y) : 0;
-  byte y3 = (lowByte(x)!=0 && highByte(y)!=0)  ? highByte(y) : 0; 
-  byte y4 = (highByte(x)!=0 && highByte(y)!=0) ? highByte(y) : 0;
+ byte y1= Y1(1,1)X1(1,1)^X1(2,2)^X1(4,4);
+ byte y2= Y2(0,0);
+ byte y3 = Y3(0,0);
+ byte y4 = Y4(0,0);
 
 //boardKordinats(1,1);
- 
-byte XorDatax1 = x1
-
+byte XorDataY1;
+byte XorDataY2;
+byte XorDataY4;
+byte XorDataY4;
+byte XorDataX1;
+byte XorDataX2;
+byte XorDataX3;
+byte XorDataX4;
+byte x1 = X1(1,1)^X1(2,2)^X1(4,4);
+byte x2 = X2(0,0);
+byte x3 = X3(0,0);
+byte x4 = X4(0,0);
   dataROW1 = x1;
   dataROW2 = x2;
   dataROW3 = x3;
@@ -363,10 +368,17 @@ return byte x4 = (highByte(x) !=0 && highByte(y)!=0) ? highByte(x) : 0;
 }
 void Y1(int x, int y)
 {
-return  byte y1 = (lowByte(x) !=0 && lowByte(y)!=0)  ? lowByte(y) : 0;
+return byte y1 = (lowByte(x) !=0 && lowByte(y)!=0)  ? lowByte(y) : 0;
 }
 void Y2(int x, int y)
 {
-  byte y2 = (highByte(x) !=0 && lowByte(y)!=0) ? lowByte(y) : 0;
-  
+return byte y2 = (highByte(x) !=0 && lowByte(y)!=0) ? lowByte(y) : 0;
+}
+void Y3(int x, int y)
+{
+return byte y3 = (lowByte(x)!=0 && highByte(y)!=0)  ? highByte(y) : 0; 
+}
+void Y4(int x, int y)
+{
+return byte y4 = (highByte(x)!=0 && highByte(y)!=0) ? highByte(y) : 0;
 }
