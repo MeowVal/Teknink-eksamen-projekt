@@ -30,41 +30,12 @@ byte dataGREEN4;
 byte dataBLUE4;
 byte dataArrayColor[9];
 byte dataArrayROW[9];
-boolean X1 = false;
-boolean X2 = false;
-boolean X3 = false;
-boolean X4 = false;
-boolean X5 = false;
-boolean X6 = false;
-boolean X7 = false;
-boolean X8 = false;
-boolean X9 = false;
-boolean X10 = false;
-boolean X11 = false;
-boolean X12 = false;
-boolean X13 = false;
-boolean X14 = false;
-boolean X15 = false;
-boolean X16 = false;
-boolean red = false;
-boolean green = false;
-boolean blue = false;
-boolean y1 = false;
-boolean y2 = false;
-boolean y3 = false;
-boolean y4 = false;
-boolean y5 = false;
-boolean y6 = false;
-boolean y7 = false;
-boolean y8 = false;
-boolean y9 = false;
-boolean y10 = false;
-boolean y11 = false;
-boolean y12 = false;
-boolean y13 = false;
-boolean y14 = false;
-boolean y15 = false;
-boolean y16 = false;
+int x;
+int y;
+byte RGB;
+byte RED = 0x4; // 0100
+byte GREEN = 0x2; // 0010
+byte BLUE = 0x1; // 0001
 const int  dataPin = 12;
 const int  clockPin = 13;
 const int  latchPin = 11; 
@@ -102,6 +73,15 @@ void setup() {
   dataArrayROW[6] = 0xC0; //11000000
   dataArrayROW[7] = 0x80; //10000000
   dataArrayROW[8] = 0x00; //00000000
+  dataArrayROW[0] = 0x01; //00000001
+  dataArrayROW[1] = 0x02; //00000010
+  dataArrayROW[2] = 0xFC; //11111100
+  dataArrayROW[3] = 0xF8; //11111000
+  dataArrayROW[4] = 0xF0; //11110000
+  dataArrayROW[5] = 0xE0; //11100000
+  dataArrayROW[6] = 0xC0; //11000000
+  dataArrayROW[7] = 0x80; //10000000
+  dataArrayROW[8] = 0x00; //00000000
   
   
   dataArrayColor[0] = 0x00; //00000000 = 0
@@ -128,6 +108,7 @@ void setup() {
   dataArrayColor[20] = 0xDF; //11011111
   dataArrayColor[21] = 0xBF; //10111111
   dataArrayColor[22] = 0xFA; //11111010
+  
 
 }
 void swich1(){
@@ -255,46 +236,88 @@ void loop() {
   lcd.setCursor(0, 1);
   // print the number of seconds since reset:
   lcd.print(millis() / 1000);
-  
-if (red && X1)
-{
-//dataRED1 = x1();
+x = 0b0000001111000000;
+y = 88;
+RGB = 0x4;
+  	byte x1 = (lowByte(x) !=0 && lowByte(y)!=0) ? lowByte(x) : 0;
+  byte x2 = (highByte(x) !=0 && lowByte(y)!=0)? highByte(x) : 0;
+  byte x3 = (lowByte(x) !=0 && highByte(y)!=0) ? lowByte(x) : 0; 
+  byte x4 = (highByte(x) !=0 && highByte(y)!=0) ? highByte(x) : 0;
+  byte y1 = (lowByte(x) !=0 && lowByte(y)!=0)  ? lowByte(y) : 0;
+  byte y2 = (highByte(x) !=0 && lowByte(y)!=0) ? lowByte(y) : 0;
+  byte y3 = (lowByte(x)!=0 && highByte(y)!=0)  ? highByte(y) : 0; 
+  byte y4 = (highByte(x)!=0 && highByte(y)!=0) ? highByte(y) : 0;
+
+//boardKordinats(1,1);
+ 
+byte XorDatax1 = x1
+
+  dataROW1 = x1;
+  dataROW2 = x2;
+  dataROW3 = x3;
+  dataROW4 = x4;
+  if (RGB == 0x4 || RGB == 0x6 || RGB == 0x7)
+  {
+  dataRED1 = ~y1;
+  dataRED2 = ~y2;
+  dataRED3 = ~y3;
+  dataRED4 = ~y4;
 }
-if (y1)
+else
 {
-  //dataROW1 = 0x01;
+dataRED1 = 255;
+dataRED2 = 255;
+dataRED3 = 255;
+dataRED4 = 255;
 }
-if (green && X1)
+
+if (RGB == 0x2 || RGB == 0x3 || RGB == 0x6 || RGB == 0x7)
 {
-  //dataGREEN1 = 0xFE;
+  dataGREEN1 = ~y1;  
+  dataGREEN2 = ~y2;
+  dataGREEN3 = ~y3;
+  dataGREEN4 = ~y4;
 }
-if (blue)
+else 
 {
-  //dataBLUE1 = 0xFE;
+  dataGREEN1 = 255;
+  dataGREEN2 = 255;
+  dataGREEN3 = 255;
+  dataGREEN4 = 255;
 }
-  dataROW1 = dataArrayROW[6];
-  dataRED1 = dataArrayColor[0];
-  dataGREEN1 = dataArrayColor[1];
-  dataBLUE1 = dataArrayColor[1];
-  dataROW2 = dataArrayROW[7];
-  dataRED2 = dataArrayColor[1];
-  dataGREEN2 = dataArrayColor[1];
-  dataBLUE2 = dataArrayColor[1];
-  dataROW3 = dataArrayROW[7];
-  dataRED3 = dataArrayColor[1];
-  dataGREEN3 = dataArrayColor[1];
-  dataBLUE3 = dataArrayColor[1];
-  dataROW4 = dataArrayColor[1];
-  dataRED4 = dataArrayROW[7];
-  dataGREEN4 = dataArrayColor[1];
-  dataBLUE4 = dataArrayColor[1];
+if (RGB == 0x1|| RGB == 0x3 || RGB == 0x7)
+{
+  dataBLUE1 = ~y1;
+  dataBLUE2 = ~y2;
+  dataBLUE3 = ~y3;
+  dataBLUE4 = ~y4;
+}
+else 
+{
+  dataBLUE1 = 255;
+  dataBLUE2 = 255;
+  dataBLUE3 = 255;
+  dataBLUE4 = 255;
+
+}
+Serial.print("ROW1: ");
+Serial.println(x1,BIN);
+Serial.print("ROW2: ");
+Serial.println(x2,BIN);
+Serial.print("ROW3: ");
+Serial.println(x3,BIN);
+Serial.print("ROW4: ");
+Serial.println(x4,BIN);
+Serial.print("y4: ");
+Serial.println(y4,BIN);
+
   delay(100);
   digitalWrite(rowLatchPin, LOW);
     delayMicroseconds(dly);
-    shiftOut(rowDataPin,rowClockPin,MSBFIRST,B10000000);
-    shiftOut(rowDataPin,rowClockPin,MSBFIRST,B10000000);
-    shiftOut(rowDataPin,rowClockPin,MSBFIRST,B10000000);
-    shiftOut(rowDataPin,rowClockPin,MSBFIRST,B10000000);
+    shiftOut(rowDataPin,rowClockPin,MSBFIRST,dataROW4);
+    shiftOut(rowDataPin,rowClockPin,MSBFIRST,dataROW3);
+    shiftOut(rowDataPin,rowClockPin,MSBFIRST,dataROW2);
+    shiftOut(rowDataPin,rowClockPin,MSBFIRST,dataROW1);
     delayMicroseconds(dly);
     digitalWrite(rowLatchPin,HIGH);
      Serial.print("ROW: ");
@@ -310,10 +333,10 @@ if (blue)
     shiftOut(dataPin,clockPin,MSBFIRST,dataGREEN3);
     shiftOut(dataPin,clockPin,MSBFIRST,dataGREEN2);
     shiftOut(dataPin,clockPin,MSBFIRST,dataGREEN1);
-    shiftOut(dataPin,clockPin,MSBFIRST,B11111110);
-    shiftOut(dataPin,clockPin,MSBFIRST,B11111110);
-    shiftOut(dataPin,clockPin,MSBFIRST,B11111110);
-    shiftOut(dataPin,clockPin,MSBFIRST,B11111110);
+    shiftOut(dataPin,clockPin,MSBFIRST,dataRED4);
+    shiftOut(dataPin,clockPin,MSBFIRST,dataRED3);
+    shiftOut(dataPin,clockPin,MSBFIRST,dataRED2);
+    shiftOut(dataPin,clockPin,MSBFIRST,dataRED1);
     delayMicroseconds(dly);
     digitalWrite(latchPin,HIGH);
     Serial.print("red1: ");
@@ -322,20 +345,28 @@ if (blue)
     Serial.print("red1: ");
     Serial.println(dataRED1);
 }
-void x1()
+void X1(int x, int y)
 {
-  return 0xFE;
+ return byte x1 = (lowByte(x) !=0 && lowByte(y)!=0) ? lowByte(x) : 0;
 }
-void x2()
+void X2(int x, int y)
 {
-  return 0xFD;
+return byte x2 = (highByte(x) !=0 && lowByte(y)!=0)? highByte(x) : 0;
 }
-void x3()
+void X3(int x, int y)
 {
-  return 0xFB;
+return byte x3 = (lowByte(x) !=0 && highByte(y)!=0) ? lowByte(x) : 0; 
 }
-void x4()
+void X3(int x, int y)
 {
-  return 0xF7;
+return byte x4 = (highByte(x) !=0 && highByte(y)!=0) ? highByte(x) : 0;
 }
-
+void Y1(int x, int y)
+{
+return  byte y1 = (lowByte(x) !=0 && lowByte(y)!=0)  ? lowByte(y) : 0;
+}
+void Y2(int x, int y)
+{
+  byte y2 = (highByte(x) !=0 && lowByte(y)!=0) ? lowByte(y) : 0;
+  
+}
