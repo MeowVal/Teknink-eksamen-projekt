@@ -64,50 +64,31 @@ void setup() {
   // Print a message to the LCD.
   lcd.print("hvor langsom du har været:");
   Serial.begin (9600);
-  dataArrayROW[0] = 0xFF; //11111111
-  dataArrayROW[1] = 0xFE; //11111110
-  dataArrayROW[2] = 0xFC; //11111100
-  dataArrayROW[3] = 0xF8; //11111000
-  dataArrayROW[4] = 0xF0; //11110000
-  dataArrayROW[5] = 0xE0; //11100000
-  dataArrayROW[6] = 0xC0; //11000000
-  dataArrayROW[7] = 0x80; //10000000
-  dataArrayROW[8] = 0x00; //00000000
-  dataArrayROW[0] = 0x01; //00000001
-  dataArrayROW[1] = 0x02; //00000010
-  dataArrayROW[2] = 0xFC; //11111100
-  dataArrayROW[3] = 0xF8; //11111000
-  dataArrayROW[4] = 0xF0; //11110000
-  dataArrayROW[5] = 0xE0; //11100000
-  dataArrayROW[6] = 0xC0; //11000000
-  dataArrayROW[7] = 0x80; //10000000
-  dataArrayROW[8] = 0x00; //00000000
+  dataArrayROW[0] = 0x00; //00000000
+  dataArrayROW[1] = 0b10000001; //10000000
+  dataArrayROW[2] = 0b10000001; //01000000
+  dataArrayROW[3] = 0b10000010; //00100000
+  dataArrayROW[4] = 0b10000100; //00010000
+  dataArrayROW[5] = 0b10001000; //00001000
+  dataArrayROW[6] = 0b10010000; //00000100
+  dataArrayROW[7] = 0b10100000; //00000010
+  dataArrayROW[8] = 0b11000000; //00000001
+  
+  
   
   
   dataArrayColor[0] = 0x00; //00000000 = 0
   dataArrayColor[1] = 0x01; //00000001 = 1
-  dataArrayColor[2] = 0x03; //00000011 = 3
-  dataArrayColor[3] = 0x07; //00000111 = 7
-  dataArrayColor[4] = 0x0F; //00001111 = 15
-  dataArrayColor[5] = 0x1F; //00011111 = 31
-  dataArrayColor[6] = 0x3F; //00111111 = 63
-  dataArrayColor[7] = 0x7F; //01111111 = 127
-  dataArrayColor[8] = 0xFF; //11111111 = 255
-  dataArrayColor[9] = 0xFE; //11111110 = 254
-  dataArrayColor[10] = 0xFC; //11111100 = 252
-  dataArrayColor[11] = 0xF8; //11111000 = 248
-  dataArrayColor[12] = 0xF0; //11110000
-  dataArrayColor[13] = 0xE0; //11100000
-  dataArrayColor[14] = 0xC0; //11000000
-  dataArrayColor[15] = 0x80; //10000000
-  dataArrayColor[16] = 0xFD; //11111101
-  dataArrayColor[16] = 0xFD; //11111101
-  dataArrayColor[17] = 0xFB; //11111011
-  dataArrayColor[18] = 0xF7; //11110111
-  dataArrayColor[19] = 0xEF; //11101111
-  dataArrayColor[20] = 0xDF; //11011111
-  dataArrayColor[21] = 0xBF; //10111111
-  dataArrayColor[22] = 0xFA; //11111010
+  dataArrayColor[2] = 0x02; //00000010 = 2
+  dataArrayColor[3] = 0x04; //00000100 = 4
+  dataArrayColor[4] = 0x08; //00001000 = 8
+  dataArrayColor[5] = 0x10; //00010000 = 10
+  dataArrayColor[6] = 0x20; //00100000 = 20
+  dataArrayColor[7] = 0x40; //01000000 = 40
+  dataArrayColor[8] = 0x80; //10000000 = 80
+ 
+
+ 
   
 
 }
@@ -239,24 +220,28 @@ void loop() {
 x = 0b0000001111000000;
 y = 88;
 RGB = 0x4;
- byte y1= Y1(1,1)X1(1,1)^X1(2,2)^X1(4,4);
- byte y2= Y2(0,0);
- byte y3 = Y3(0,0);
- byte y4 = Y4(0,0);
+
 
 //boardKordinats(1,1);
-byte XorDataY1;
-byte XorDataY2;
-byte XorDataY4;
-byte XorDataY4;
-byte XorDataX1;
-byte XorDataX2;
-byte XorDataX3;
-byte XorDataX4;
-byte x1 = X1(1,1)^X1(2,2)^X1(4,4);
-byte x2 = X2(0,0);
-byte x3 = X3(0,0);
-byte x4 = X4(0,0);
+for (int x=0;x<9;x++){
+int XorDataY1 = dataArrayColor[x];
+int XorDataY2 = dataArrayROW[x];
+int XorDataY3 = dataArrayROW[x];
+int XorDataY4 = dataArrayColor[x];
+
+int XorDataX1 = dataArrayColor[x];
+int XorDataX2 = dataArrayROW[x];
+int XorDataX3 = dataArrayROW[x];
+int XorDataX4 = dataArrayColor[x];
+
+ int y1 = XorDataY1;
+ int y2 = XorDataY2;
+ int y3 = XorDataY3;
+ int y4 = XorDataY4;
+ int x1 = XorDataX1;
+ int x2 = XorDataX2;
+ int x3 = XorDataX3;
+ int x4 = XorDataX4;
   dataROW1 = x1;
   dataROW2 = x2;
   dataROW3 = x3;
@@ -305,31 +290,31 @@ else
   dataBLUE4 = 255;
 
 }
-Serial.print("ROW1: ");
-Serial.println(x1,BIN);
-Serial.print("ROW2: ");
-Serial.println(x2,BIN);
-Serial.print("ROW3: ");
-Serial.println(x3,BIN);
-Serial.print("ROW4: ");
-Serial.println(x4,BIN);
-Serial.print("y4: ");
-Serial.println(y4,BIN);
+// Serial.print("ROW1: ");
+// Serial.println(x1,BIN);
+// Serial.print("ROW2: ");
+// Serial.println(x2,BIN);
+// Serial.print("ROW3: ");
+// Serial.println(x3,BIN);
+// Serial.print("ROW4: ");
+// Serial.println(x4,BIN);
+// Serial.print("y4: ");
+// Serial.println(y4,BIN);
 
-  delay(100);
+  //delay(100);
   digitalWrite(rowLatchPin, LOW);
-    delayMicroseconds(dly);
+    //delayMicroseconds(dly);
     shiftOut(rowDataPin,rowClockPin,MSBFIRST,dataROW4);
     shiftOut(rowDataPin,rowClockPin,MSBFIRST,dataROW3);
     shiftOut(rowDataPin,rowClockPin,MSBFIRST,dataROW2);
     shiftOut(rowDataPin,rowClockPin,MSBFIRST,dataROW1);
-    delayMicroseconds(dly);
+   // delayMicroseconds(dly);
     digitalWrite(rowLatchPin,HIGH);
-     Serial.print("ROW: ");
-    Serial.println(dataROW1,BIN);
+    //  Serial.print("ROW: ");
+    // Serial.println(dataROW1,BIN);
  
     digitalWrite(latchPin,LOW);
-    delayMicroseconds(dly);
+    //delayMicroseconds(dly);
     shiftOut(dataPin,clockPin,MSBFIRST,dataBLUE4);
     shiftOut(dataPin,clockPin,MSBFIRST,dataBLUE3); 
     shiftOut(dataPin,clockPin,MSBFIRST,dataBLUE2);
@@ -342,43 +327,52 @@ Serial.println(y4,BIN);
     shiftOut(dataPin,clockPin,MSBFIRST,dataRED3);
     shiftOut(dataPin,clockPin,MSBFIRST,dataRED2);
     shiftOut(dataPin,clockPin,MSBFIRST,dataRED1);
-    delayMicroseconds(dly);
+    //delayMicroseconds(dly);
     digitalWrite(latchPin,HIGH);
-    Serial.print("red1: ");
-    Serial.println(dataRED1,BIN);
+    // Serial.print("red1: ");
+    // Serial.println(dataRED1,BIN);
 
-    Serial.print("red1: ");
-    Serial.println(dataRED1);
+    // Serial.print("red1: ");
+    // Serial.println(dataRED1);
 }
-void X1(int x, int y)
-{
- return byte x1 = (lowByte(x) !=0 && lowByte(y)!=0) ? lowByte(x) : 0;
 }
-void X2(int x, int y)
+byte X1(int x, int y)
 {
-return byte x2 = (highByte(x) !=0 && lowByte(y)!=0)? highByte(x) : 0;
+  byte x1 = (lowByte(x) !=0 && lowByte(y)!=0) ? lowByte(x) : 0;
+ return x1;
 }
-void X3(int x, int y)
+byte X2(int x, int y)
 {
-return byte x3 = (lowByte(x) !=0 && highByte(y)!=0) ? lowByte(x) : 0; 
+  byte x2 = (highByte(x) !=0 && lowByte(y)!=0)? highByte(x) : 0;
+return x2;
 }
-void X3(int x, int y)
+byte X3(int x, int y)
 {
-return byte x4 = (highByte(x) !=0 && highByte(y)!=0) ? highByte(x) : 0;
+  byte x3 = (lowByte(x) !=0 && highByte(y)!=0) ? lowByte(x) : 0; 
+return x3;
 }
-void Y1(int x, int y)
+byte X4(int x, int y)
 {
-return byte y1 = (lowByte(x) !=0 && lowByte(y)!=0)  ? lowByte(y) : 0;
+  byte x4 = (highByte(x) !=0 && highByte(y)!=0) ? highByte(x) : 0;
+return x4;
 }
-void Y2(int x, int y)
+byte Y1(int x, int y)
 {
-return byte y2 = (highByte(x) !=0 && lowByte(y)!=0) ? lowByte(y) : 0;
+  byte y1 = (lowByte(x) !=0 && lowByte(y)!=0)  ? lowByte(y) : 0;
+return y1;
 }
-void Y3(int x, int y)
+byte Y2(int x, int y)
 {
-return byte y3 = (lowByte(x)!=0 && highByte(y)!=0)  ? highByte(y) : 0; 
+  byte y2 = (highByte(x) !=0 && lowByte(y)!=0) ? lowByte(y) : 0;
+return y2;
 }
-void Y4(int x, int y)
+byte Y3(int x, int y)
 {
-return byte y4 = (highByte(x)!=0 && highByte(y)!=0) ? highByte(y) : 0;
+  byte y3 = (lowByte(x)!=0 && highByte(y)!=0)  ? highByte(y) : 0;
+return  y3;
+}
+byte Y4(int x, int y)
+{
+  byte y4 = (highByte(x)!=0 && highByte(y)!=0) ? highByte(y) : 0;
+return y4;
 }
