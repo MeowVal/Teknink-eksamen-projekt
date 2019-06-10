@@ -12,6 +12,7 @@ const int CPin = 7;
 const int DPin = 6;
 const int InhibitPin = 5;
 
+
 byte dataRED1;
 byte dataROW1;
 byte dataGREEN1;
@@ -46,79 +47,128 @@ const int  rowLatchPin = 45;
 const int rs = 53, en = 52, d4 = 48, d5 = 49, d6 = 50, d7 = 51;
 // d0 = 41, d1 = 42, d2 = 43, d3 = 44,
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
-void setup() {
-  pinMode(dataPin, OUTPUT);
-  pinMode(clockPin, OUTPUT);
-  pinMode(latchPin, OUTPUT);
-  pinMode(rowDataPin, OUTPUT);
-  pinMode(rowClockPin, OUTPUT);
-  pinMode(rowLatchPin, OUTPUT);
-  pinMode(APin, OUTPUT);
-  pinMode(BPin, OUTPUT);
-  pinMode(CPin, OUTPUT);
-  pinMode(DPin, OUTPUT);
-  pinMode(InhibitPin, OUTPUT);
-  // set up the LCD's number of columns and rows:
-  lcd.begin(16, 2);
-  // Print a message to the LCD.
-  lcd.print("hvor langsom du har vaeret:");
-  Serial.begin (9600);
-  // dataArrayROW[0] = 0x00; //00000000
-  // dataArrayROW[1] = 0b10000001; //10000000
-  // dataArrayROW[2] = 0b10000001; //01000000
-  // dataArrayROW[3] = 0b10000010; //00100000
-  // dataArrayROW[4] = 0b10000100; //00010000
-  // dataArrayROW[5] = 0b10001000; //00001000
-  // dataArrayROW[6] = 0b10010000; //00000100
-  // dataArrayROW[7] = 0b10100000; //00000010
-  // dataArrayROW[8] = 0b11000000; //00000001
-  
-  
-  
-  
-  // dataArrayColor[0] = 0x00; //00000000 = 0
-  // dataArrayColor[1] = 0x01; //00000001 = 1
-  // dataArrayColor[2] = 0x02; //00000010 = 2
-  // dataArrayColor[3] = 0x04; //00000100 = 4
-  // dataArrayColor[4] = 0x08; //00001000 = 8
-  // dataArrayColor[5] = 0x10; //00010000 = 10
-  // dataArrayColor[6] = 0x20; //00100000 = 20
-  // dataArrayColor[7] = 0x40; //01000000 = 40
-  // dataArrayColor[8] = 0x80; //10000000 = 80
- 
-
- 
-  
-
-}
-
-void loop() {
-// set the cursor to column 0, line 1
-  // (note: line 1 is the second row, since counting begins with 0):
-  lcd.setCursor(0, 1);
-  // print the number of seconds since reset:
-  lcd.print(millis() / 1000);
-
-int inputX=analogRead(inputXPin);
-int inputY=analogRead(inputYPin);
-int inputSW=analogRead(inputKnapPin); 
-
-delay(dl);
-dx1=0;
-dx2=0;
-dx3 = 0b0000000010100000;
-dx4=0;
-dy1 = 0xffff;
-dy2 = 0xffff;
-dy3 = 0b1000000000000000;
-dy4 = 0xffff;
-dx3 <<1;
-Farve = 0x4;
-dataXShiftOut(X1(dx1,dy1),X2(dx2,dy2),X3(dx3,dy3),X4(dx4,dy4));
-dataYShiftOut(Y1(dx1,dy1),Y2(dx2,dy2),Y3(dx3,dy3),Y4(dx4,dy4),Farve);
- delay(100);
-
-}
+class Demultiplexer{
+  public:
+  static void swich1(){
+    digitalWrite(APin, LOW);
+    digitalWrite(BPin, LOW);
+    digitalWrite(CPin, LOW);
+    digitalWrite(DPin, LOW);
+    digitalWrite(InhibitPin, LOW);   
+  }
+  static void swich2(){
+    digitalWrite(APin, HIGH);
+    digitalWrite(BPin, LOW);
+    digitalWrite(CPin, LOW);
+    digitalWrite(DPin, LOW);
+    digitalWrite(InhibitPin, LOW);   
+  }
+  static void swich3(){
+    digitalWrite(APin, LOW);
+    digitalWrite(BPin, HIGH);
+    digitalWrite(CPin, LOW);
+    digitalWrite(DPin, LOW);
+    digitalWrite(InhibitPin, LOW);   
+  }
+  static void swich4(){
+    digitalWrite(APin, HIGH);
+    digitalWrite(BPin, HIGH);
+    digitalWrite(CPin, LOW);
+    digitalWrite(DPin, LOW);
+    digitalWrite(InhibitPin, LOW);   
+  }
+  static void swich5(){
+    digitalWrite(APin, LOW);
+    digitalWrite(BPin, LOW);
+    digitalWrite(CPin, HIGH);
+    digitalWrite(DPin, LOW);
+    digitalWrite(InhibitPin, LOW);   
+  }
+  static void swich6(){
+    digitalWrite(APin, HIGH);
+    digitalWrite(BPin, LOW);
+    digitalWrite(CPin, HIGH);
+    digitalWrite(DPin, LOW);
+    digitalWrite(InhibitPin, LOW);   
+  }
+  static void swich7(){
+    digitalWrite(APin, LOW);
+    digitalWrite(BPin, HIGH);
+    digitalWrite(CPin, HIGH);
+    digitalWrite(DPin, LOW);
+    digitalWrite(InhibitPin, LOW);
+  }
+  static void swich8(){
+    digitalWrite(APin, LOW);
+    digitalWrite(BPin, HIGH);
+    digitalWrite(CPin, HIGH);
+    digitalWrite(DPin, LOW);
+    digitalWrite(InhibitPin, LOW);
+  }
+  static void swich9(){
+    digitalWrite(APin, LOW);
+    digitalWrite(BPin, HIGH);
+    digitalWrite(CPin, HIGH);
+    digitalWrite(DPin, LOW);
+    digitalWrite(InhibitPin, LOW);
+  }
+  static void swich10(){
+    digitalWrite(APin, LOW);
+    digitalWrite(BPin, HIGH);
+    digitalWrite(CPin, HIGH);
+    digitalWrite(DPin, LOW);
+    digitalWrite(InhibitPin, LOW);
+  }
+  static void swich11(){
+    digitalWrite(APin, LOW);
+    digitalWrite(BPin, HIGH);
+    digitalWrite(CPin, HIGH);
+    digitalWrite(DPin, LOW);
+    digitalWrite(InhibitPin, LOW);
+  }
+  static void swich12(){
+    digitalWrite(APin, LOW);
+    digitalWrite(BPin, HIGH);
+    digitalWrite(CPin, HIGH);
+    digitalWrite(DPin, LOW);
+    digitalWrite(InhibitPin, LOW);
+  }
+  static void swich13(){
+    digitalWrite(APin, LOW);
+    digitalWrite(BPin, HIGH);
+    digitalWrite(CPin, HIGH);
+    digitalWrite(DPin, LOW);
+    digitalWrite(InhibitPin, LOW);
+  }
+  static void swich14(){
+    digitalWrite(APin, LOW);
+    digitalWrite(BPin, HIGH);
+    digitalWrite(CPin, HIGH);
+    digitalWrite(DPin, LOW);
+    digitalWrite(InhibitPin, LOW);
+  }
+  static void swich15(){
+    digitalWrite(APin, LOW);
+    digitalWrite(BPin, HIGH);
+    digitalWrite(CPin, HIGH);
+    digitalWrite(DPin, LOW);
+    digitalWrite(InhibitPin, LOW);
+  }
+  static void swich16(){
+    digitalWrite(APin, LOW);
+    digitalWrite(BPin, HIGH);
+    digitalWrite(CPin, HIGH);
+    digitalWrite(DPin, LOW);
+    digitalWrite(InhibitPin, LOW);
+  }
+  static void swichReset(){
+    digitalWrite(APin, LOW);
+    digitalWrite(BPin, LOW);
+    digitalWrite(CPin, LOW);
+    digitalWrite(DPin, LOW);
+    digitalWrite(InhibitPin, HIGH);
+  }
+};
 void dataXShiftOut(int x1, int x2, int x3, int x4){
   byte dataROW1 = x1;
   byte dataROW2 = x2;
@@ -245,152 +295,186 @@ byte Y4(int x, int y)
   byte y4 = (highByte(x)!=0 && highByte(y)!=0) ? highByte(y) : 0;
   return y4;
 }
-class Demultiplexer{
-  public:
-  static void swich1(){
-    digitalWrite(APin, LOW);
-    digitalWrite(BPin, LOW);
-    digitalWrite(CPin, LOW);
-    digitalWrite(DPin, LOW);
-    digitalWrite(InhibitPin, LOW);   
-  }
-  static void swich2(){
-    digitalWrite(APin, HIGH);
-    digitalWrite(BPin, LOW);
-    digitalWrite(CPin, LOW);
-    digitalWrite(DPin, LOW);
-    digitalWrite(InhibitPin, LOW);   
-  }
-  static void swich3(){
-    digitalWrite(APin, LOW);
-    digitalWrite(BPin, HIGH);
-    digitalWrite(CPin, LOW);
-    digitalWrite(DPin, LOW);
-    digitalWrite(InhibitPin, LOW);   
-  }
-  static void swich4(){
-    digitalWrite(APin, HIGH);
-    digitalWrite(BPin, HIGH);
-    digitalWrite(CPin, LOW);
-    digitalWrite(DPin, LOW);
-    digitalWrite(InhibitPin, LOW);   
-  }
-  static void swich5(){
-    digitalWrite(APin, LOW);
-    digitalWrite(BPin, LOW);
-    digitalWrite(CPin, HIGH);
-    digitalWrite(DPin, LOW);
-    digitalWrite(InhibitPin, LOW);   
-  }
-  static void swich6(){
-    digitalWrite(APin, HIGH);
-    digitalWrite(BPin, LOW);
-    digitalWrite(CPin, HIGH);
-    digitalWrite(DPin, LOW);
-    digitalWrite(InhibitPin, LOW);   
-  }
-  static void swich7(){
-    digitalWrite(APin, LOW);
-    digitalWrite(BPin, HIGH);
-    digitalWrite(CPin, HIGH);
-    digitalWrite(DPin, LOW);
-    digitalWrite(InhibitPin, LOW);
-  }
-  static void swich8(){
-    digitalWrite(APin, LOW);
-    digitalWrite(BPin, HIGH);
-    digitalWrite(CPin, HIGH);
-    digitalWrite(DPin, LOW);
-    digitalWrite(InhibitPin, LOW);
-  }
-  static void swich9(){
-    digitalWrite(APin, LOW);
-    digitalWrite(BPin, HIGH);
-    digitalWrite(CPin, HIGH);
-    digitalWrite(DPin, LOW);
-    digitalWrite(InhibitPin, LOW);
-  }
-  static void swich10(){
-    digitalWrite(APin, LOW);
-    digitalWrite(BPin, HIGH);
-    digitalWrite(CPin, HIGH);
-    digitalWrite(DPin, LOW);
-    digitalWrite(InhibitPin, LOW);
-  }
-  static void swich11(){
-    digitalWrite(APin, LOW);
-    digitalWrite(BPin, HIGH);
-    digitalWrite(CPin, HIGH);
-    digitalWrite(DPin, LOW);
-    digitalWrite(InhibitPin, LOW);
-  }
-  static void swich12(){
-    digitalWrite(APin, LOW);
-    digitalWrite(BPin, HIGH);
-    digitalWrite(CPin, HIGH);
-    digitalWrite(DPin, LOW);
-    digitalWrite(InhibitPin, LOW);
-  }
-  static void swich13(){
-    digitalWrite(APin, LOW);
-    digitalWrite(BPin, HIGH);
-    digitalWrite(CPin, HIGH);
-    digitalWrite(DPin, LOW);
-    digitalWrite(InhibitPin, LOW);
-  }
-  static void swich14(){
-    digitalWrite(APin, LOW);
-    digitalWrite(BPin, HIGH);
-    digitalWrite(CPin, HIGH);
-    digitalWrite(DPin, LOW);
-    digitalWrite(InhibitPin, LOW);
-  }
-  static void swich15(){
-    digitalWrite(APin, LOW);
-    digitalWrite(BPin, HIGH);
-    digitalWrite(CPin, HIGH);
-    digitalWrite(DPin, LOW);
-    digitalWrite(InhibitPin, LOW);
-  }
-  static void swich16(){
-    digitalWrite(APin, LOW);
-    digitalWrite(BPin, HIGH);
-    digitalWrite(CPin, HIGH);
-    digitalWrite(DPin, LOW);
-    digitalWrite(InhibitPin, LOW);
-  }
-  static void swichReset(){
-    digitalWrite(APin, LOW);
-    digitalWrite(BPin, LOW);
-    digitalWrite(CPin, LOW);
-    digitalWrite(DPin, LOW);
-    digitalWrite(InhibitPin, HIGH);
-  }
-};
-class player{
+class Player{
   public:  
+
     int playerPosX = 0b0000000010000000;
     int playerPosY = 0b1000000000000000;
+    int dx = playerPosX;
+    int dy = playerPosY;
     //playercolor = 
-  byte playermove(int inputX,int inputY){
-    if (inputY==1024)
+  byte playermove(int inputX,int inputY,int inputSW){
+    if(inputSW==0)
     {
-      byte dy3 = playerPosY;
-      byte dx3 = dx3<<1;
-      byte dy4 = dy3;
-      byte dx4 = dx3;
-      dataXShiftOut(X1(dx1,dy1),X2(dx2,dy2),X3(dx3,dy3),X4(dx4,dy4));
-      dataYShiftOut(Y1(dx1,dy1),Y2(dx2,dy2),Y3(dx3,dy3),Y4(dx4,dy4),RED);
-    }
+      //delay(100);
+      Farve = RED;
+      if(Farve == RED)
+      {
+        Farve = GREEN;
+      }
+      if(Farve == GREEN)
+      {
+        Farve = BLUE;
+      }
+      if(Farve == BLUE)
+      {
+        Farve = RED+GREEN;
+      }
+      if (Farve == RED+GREEN)
+      {
+        Farve = RED+BLUE;
+      }
+      if (Farve == RED+BLUE)
+      {
+        Farve = GREEN+BLUE;
+      }
+      if (Farve == GREEN+BLUE)
+      {
+        Farve = RED+GREEN+BLUE;
+      }
+      if (Farve == RED+GREEN+BLUE)
+      {
+        Farve = RED;
+      }
+    }Serial.println(inputY);
     if (inputY==0)
     {
-      byte dy3 = playerPosY;
-      byte dx3 = dx3>>1;
-      byte dy4 = dy3;
-      byte dx4 = dx3;
+      
+       dx = dx<<1;
+      
+      dataXShiftOut(X1(dx,dy),X2(dx,dy),X3(dx,dy),X4(dx,dy));
+      dataYShiftOut(Y1(dx,dy),Y2(dx,dy),Y3(dx,dy),Y4(dx,dy),Farve);
+      delay(100);
+    }
+    if (inputY==1010)
+    {
+       dx = dx>>1;
+      
+      
+      dataXShiftOut(X1(dx,dy),X2(dx,dy),X3(dx,dy),X4(dx,dy));
+      dataYShiftOut(Y1(dx,dy),Y2(dx,dy),Y3(dx,dy),Y4(dx,dy),Farve);
+      delay(100);
+    }
+    if (inputX==1010)
+    {
+       dy = dy<<1;
+      
 
-      dataXShiftOut(X1(dx1,dy1),X2(dx2,dy2),X3(dx3,dy3),X4(dx4,dy4));
-      dataYShiftOut(Y1(dx1,dy1),Y2(dx2,dy2),Y3(dx3,dy3),Y4(dx4,dy4),Farve);
+      dataXShiftOut(X1(dx,dy),X2(dx,dy),X3(dx,dy),X4(dx,dy));
+      dataYShiftOut(Y1(dx,dy),Y2(dx,dy),Y3(dx,dy),Y4(dx,dy),Farve);
+      delay(100);
     }
+    
+    if (inputX==0)
+    {
+       dy = dy>>1;
+     
+
+      dataXShiftOut(X1(dx,dy),X2(dx,dy),X3(dx,dy),X4(dx,dy));
+      dataYShiftOut(Y1(dx,dy),Y2(dx,dy),Y3(dx,dy),Y4(dx,dy),Farve);
+      delay(100);
     }
+    if(dx == 0)
+    {
+    dx = 1;
+    }
+    if(dy == 0)
+    {
+    dy = 1;
+    }
+  }
+
 };
+Player py;
+Demultiplexer dp;
+void setup() {
+  pinMode(dataPin, OUTPUT);
+  pinMode(clockPin, OUTPUT);
+  pinMode(latchPin, OUTPUT);
+  pinMode(rowDataPin, OUTPUT);
+  pinMode(rowClockPin, OUTPUT);
+  pinMode(rowLatchPin, OUTPUT);
+  pinMode(APin, OUTPUT);
+  pinMode(BPin, OUTPUT);
+  pinMode(CPin, OUTPUT);
+  pinMode(DPin, OUTPUT);
+  pinMode(InhibitPin, OUTPUT);
+  // set up the LCD's number of columns and rows:
+  lcd.begin(16, 2);
+  // Print a message to the LCD.
+  lcd.print("Hej med dig!");
+  Serial.begin (9600);
+  // dataArrayROW[0] = 0x00; //00000000
+  // dataArrayROW[1] = 0b10000001; //10000000
+  // dataArrayROW[2] = 0b10000001; //01000000
+  // dataArrayROW[3] = 0b10000010; //00100000
+  // dataArrayROW[4] = 0b10000100; //00010000
+  // dataArrayROW[5] = 0b10001000; //00001000
+  // dataArrayROW[6] = 0b10010000; //00000100
+  // dataArrayROW[7] = 0b10100000; //00000010
+  // dataArrayROW[8] = 0b11000000; //00000001
+  
+
+  
+  
+  // dataArrayColor[0] = 0x00; //00000000 = 0
+  // dataArrayColor[1] = 0x01; //00000001 = 1
+  // dataArrayColor[2] = 0x02; //00000010 = 2
+  // dataArrayColor[3] = 0x04; //00000100 = 4
+  // dataArrayColor[4] = 0x08; //00001000 = 8
+  // dataArrayColor[5] = 0x10; //00010000 = 10
+  // dataArrayColor[6] = 0x20; //00100000 = 20
+  // dataArrayColor[7] = 0x40; //01000000 = 40
+  // dataArrayColor[8] = 0x80; //10000000 = 80
+  dx3 = 0b0000000010100000;
+  dx4=dx3;
+ 
+  
+
+}
+
+void loop() {
+  
+// set the cursor to column 0, line 1
+  // (note: line 1 is the second row, since counting begins with 0):
+  lcd.setCursor(0, 1);
+  // print the number of seconds since reset:
+  lcd.print(millis() / 1000);
+
+int inputX=analogRead(inputXPin);
+int inputY=analogRead(inputYPin);
+int inputSW=analogRead(inputKnapPin); 
+dp.swich4();
+dp.swich8();
+py.playermove(inputX,inputY,inputSW);
+// delay(dl);
+// dx1=0;
+// dx2=0;
+// //dx3 = 0b0000000010100000<<1;
+// //dx4=0;
+// dy1 = 1;
+// dy2 = 1;
+// dy3 = 0b1000000000000000;
+// dy4 = 0xffff;
+// //for(int i=0; i>16;i++){
+// dx3 = dx3<<1;
+// delay(250);
+// dx4 = dx3;
+// dx2= dx3;
+// dx1 = dx3;
+
+// Farve = 0x4;
+// Serial.print("hej");
+// Serial.println(dx3);
+// dataXShiftOut(X1(dx1,dy1),X2(dx2,dy2),X3(dx3,dy3),X4(dx4,dy4));
+// dataYShiftOut(Y1(dx1,dy1),Y2(dx2,dy2),Y3(dx3,dy3),Y4(dx4,dy4),Farve);
+// if(dx4 ==0)
+// {
+//   dx3=1;
+// }
+
+//}
+}
+
+
+
