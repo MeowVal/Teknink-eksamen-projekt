@@ -29,10 +29,10 @@ byte dataRED4;
 byte dataROW4;
 byte dataGREEN4;
 byte dataBLUE4;
-byte dataArrayColor[9];
-byte dataArrayROW[9];
+
 int dx1,dx2,dx3,dx4;
 int dy1,dy2,dy3,dy4;
+
 byte RED = 0x4; // 0100
 byte GREEN = 0x2; // 0010
 byte BLUE = 0x1; // 0001
@@ -47,121 +47,155 @@ const int  rowLatchPin = 45;
 const int rs = 53, en = 52, d4 = 48, d5 = 49, d6 = 50, d7 = 51;
 // d0 = 41, d1 = 42, d2 = 43, d3 = 44,
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+
 class Demultiplexer{
   public:
-  static void swich1(){
+  static void swich1()
+  {
     digitalWrite(APin, LOW);
     digitalWrite(BPin, LOW);
     digitalWrite(CPin, LOW);
     digitalWrite(DPin, LOW);
     digitalWrite(InhibitPin, LOW);   
   }
-  static void swich2(){
+
+  static void swich2()
+  {
     digitalWrite(APin, HIGH);
     digitalWrite(BPin, LOW);
     digitalWrite(CPin, LOW);
     digitalWrite(DPin, LOW);
     digitalWrite(InhibitPin, LOW);   
   }
-  static void swich3(){
+
+  static void swich3()
+  {
     digitalWrite(APin, LOW);
     digitalWrite(BPin, HIGH);
     digitalWrite(CPin, LOW);
     digitalWrite(DPin, LOW);
     digitalWrite(InhibitPin, LOW);   
   }
-  static void swich4(){
+
+  static void swich4()
+  {
     digitalWrite(APin, HIGH);
     digitalWrite(BPin, HIGH);
     digitalWrite(CPin, LOW);
     digitalWrite(DPin, LOW);
     digitalWrite(InhibitPin, LOW);   
   }
-  static void swich5(){
+
+  static void swich5()
+  {
     digitalWrite(APin, LOW);
     digitalWrite(BPin, LOW);
     digitalWrite(CPin, HIGH);
     digitalWrite(DPin, LOW);
     digitalWrite(InhibitPin, LOW);   
   }
-  static void swich6(){
+
+  static void swich6()
+  {
     digitalWrite(APin, HIGH);
     digitalWrite(BPin, LOW);
     digitalWrite(CPin, HIGH);
     digitalWrite(DPin, LOW);
     digitalWrite(InhibitPin, LOW);   
   }
-  static void swich7(){
+
+  static void swich7()
+  {
     digitalWrite(APin, LOW);
     digitalWrite(BPin, HIGH);
     digitalWrite(CPin, HIGH);
     digitalWrite(DPin, LOW);
     digitalWrite(InhibitPin, LOW);
   }
-  static void swich8(){
+
+  static void swich8()
+  {
     digitalWrite(APin, LOW);
     digitalWrite(BPin, HIGH);
     digitalWrite(CPin, HIGH);
     digitalWrite(DPin, LOW);
     digitalWrite(InhibitPin, LOW);
   }
-  static void swich9(){
+
+  static void swich9()
+  {
     digitalWrite(APin, LOW);
     digitalWrite(BPin, HIGH);
     digitalWrite(CPin, HIGH);
     digitalWrite(DPin, LOW);
     digitalWrite(InhibitPin, LOW);
   }
-  static void swich10(){
+
+  static void swich10()
+  {
     digitalWrite(APin, LOW);
     digitalWrite(BPin, HIGH);
     digitalWrite(CPin, HIGH);
     digitalWrite(DPin, LOW);
     digitalWrite(InhibitPin, LOW);
   }
-  static void swich11(){
+
+  static void swich11()
+  {
     digitalWrite(APin, LOW);
     digitalWrite(BPin, HIGH);
     digitalWrite(CPin, HIGH);
     digitalWrite(DPin, LOW);
     digitalWrite(InhibitPin, LOW);
   }
-  static void swich12(){
+
+  static void swich12()
+  {
     digitalWrite(APin, LOW);
     digitalWrite(BPin, HIGH);
     digitalWrite(CPin, HIGH);
     digitalWrite(DPin, LOW);
     digitalWrite(InhibitPin, LOW);
   }
-  static void swich13(){
+
+  static void swich13()
+  {
     digitalWrite(APin, LOW);
     digitalWrite(BPin, HIGH);
     digitalWrite(CPin, HIGH);
     digitalWrite(DPin, LOW);
     digitalWrite(InhibitPin, LOW);
   }
-  static void swich14(){
+
+  static void swich14()
+  {
     digitalWrite(APin, LOW);
     digitalWrite(BPin, HIGH);
     digitalWrite(CPin, HIGH);
     digitalWrite(DPin, LOW);
     digitalWrite(InhibitPin, LOW);
   }
-  static void swich15(){
+
+  static void swich15()
+  {
     digitalWrite(APin, LOW);
     digitalWrite(BPin, HIGH);
     digitalWrite(CPin, HIGH);
     digitalWrite(DPin, LOW);
     digitalWrite(InhibitPin, LOW);
   }
-  static void swich16(){
+
+  static void swich16()
+  {
     digitalWrite(APin, LOW);
     digitalWrite(BPin, HIGH);
     digitalWrite(CPin, HIGH);
     digitalWrite(DPin, LOW);
     digitalWrite(InhibitPin, LOW);
   }
-  static void swichReset(){
+
+  static void swichReset()
+  {
     digitalWrite(APin, LOW);
     digitalWrite(BPin, LOW);
     digitalWrite(CPin, LOW);
@@ -169,7 +203,9 @@ class Demultiplexer{
     digitalWrite(InhibitPin, HIGH);
   }
 };
-void dataXShiftOut(int x1, int x2, int x3, int x4){
+
+void dataXShiftOut(int x1, int x2, int x3, int x4)
+{
   byte dataROW1 = x1;
   byte dataROW2 = x2;
   byte dataROW3 = x3;
@@ -184,6 +220,7 @@ void dataXShiftOut(int x1, int x2, int x3, int x4){
     delayMicroseconds(dly);
     digitalWrite(rowLatchPin,HIGH);
 }
+
 void dataYShiftOut(int y1, int y2, int y3, int y4, int RGB){
   
   if (RGB == 0x4 || RGB == 0x6 || RGB == 0x7)
@@ -222,6 +259,7 @@ void dataYShiftOut(int y1, int y2, int y3, int y4, int RGB){
   // Serial.print("green");
   // Serial.println(dataGREEN3);
   }
+
   if (RGB == 0x1|| RGB == 0x3 || RGB == 0x7)
   {
     byte dataBLUE1 = ~y1;
@@ -255,46 +293,55 @@ void dataYShiftOut(int y1, int y2, int y3, int y4, int RGB){
     delayMicroseconds(dly);
     digitalWrite(latchPin,HIGH);
 }
+
 byte X1(int x, int y)
 {
   byte x1 = (lowByte(x) !=0 && lowByte(y)!=0) ? lowByte(x) : 0;
- return x1;
+return x1;
 }
+
 byte X2(int x, int y)
 {
   byte x2 = (highByte(x) !=0 && lowByte(y)!=0)? highByte(x) : 0;
   return x2;
 }
+
 byte X3(int x, int y)
 {
   byte x3 = (lowByte(x) !=0 && highByte(y)!=0) ? lowByte(x) : 0; 
   return x3;
 }
+
 byte X4(int x, int y)
 {
   byte x4 = (highByte(x) !=0 && highByte(y)!=0) ? highByte(x) : 0;
   return x4;
 }
+
 byte Y1(int x, int y)
 {
   byte y1 = (lowByte(x) !=0 && lowByte(y)!=0)  ? lowByte(y) : 0;
   return y1;
 }
+
 byte Y2(int x, int y)
 {
   byte y2 = (highByte(x) !=0 && lowByte(y)!=0) ? lowByte(y) : 0;
   return y2;
 }
+
 byte Y3(int x, int y)
 {
   byte y3 = (lowByte(x)!=0 && highByte(y)!=0)  ? highByte(y) : 0;
   return  y3;
 }
+
 byte Y4(int x, int y)
 {
   byte y4 = (highByte(x)!=0 && highByte(y)!=0) ? highByte(y) : 0;
   return y4;
 }
+
 class Player{
   public:  
 
@@ -303,7 +350,9 @@ class Player{
     int dx = playerPosX;
     int dy = playerPosY;
     //playercolor = 
-  byte playermove(int inputX,int inputY,int inputSW){
+
+  byte playermove(int inputX,int inputY,int inputSW)
+  {
     if(inputSW==0)
     {
       //delay(100);
@@ -336,7 +385,10 @@ class Player{
       {
         Farve = RED;
       }
-    }Serial.println(inputY);
+    }
+
+    Serial.println(inputY);
+
     if (inputY==0)
     {
       
@@ -346,6 +398,7 @@ class Player{
       dataYShiftOut(Y1(dx,dy),Y2(dx,dy),Y3(dx,dy),Y4(dx,dy),Farve);
       delay(100);
     }
+
     if (inputY==1010)
     {
        dx = dx>>1;
@@ -355,6 +408,7 @@ class Player{
       dataYShiftOut(Y1(dx,dy),Y2(dx,dy),Y3(dx,dy),Y4(dx,dy),Farve);
       delay(100);
     }
+
     if (inputX==1010)
     {
        dy = dy<<1;
@@ -374,17 +428,19 @@ class Player{
       dataYShiftOut(Y1(dx,dy),Y2(dx,dy),Y3(dx,dy),Y4(dx,dy),Farve);
       delay(100);
     }
+
     if(dx == 0)
     {
     dx = 1;
     }
+
     if(dy == 0)
     {
     dy = 1;
     }
   }
-
 };
+
 Player py;
 Demultiplexer dp;
 void setup() {
@@ -404,33 +460,8 @@ void setup() {
   // Print a message to the LCD.
   lcd.print("Hej med dig!");
   Serial.begin (9600);
-  // dataArrayROW[0] = 0x00; //00000000
-  // dataArrayROW[1] = 0b10000001; //10000000
-  // dataArrayROW[2] = 0b10000001; //01000000
-  // dataArrayROW[3] = 0b10000010; //00100000
-  // dataArrayROW[4] = 0b10000100; //00010000
-  // dataArrayROW[5] = 0b10001000; //00001000
-  // dataArrayROW[6] = 0b10010000; //00000100
-  // dataArrayROW[7] = 0b10100000; //00000010
-  // dataArrayROW[8] = 0b11000000; //00000001
-  
-
-  
-  
-  // dataArrayColor[0] = 0x00; //00000000 = 0
-  // dataArrayColor[1] = 0x01; //00000001 = 1
-  // dataArrayColor[2] = 0x02; //00000010 = 2
-  // dataArrayColor[3] = 0x04; //00000100 = 4
-  // dataArrayColor[4] = 0x08; //00001000 = 8
-  // dataArrayColor[5] = 0x10; //00010000 = 10
-  // dataArrayColor[6] = 0x20; //00100000 = 20
-  // dataArrayColor[7] = 0x40; //01000000 = 40
-  // dataArrayColor[8] = 0x80; //10000000 = 80
   dx3 = 0b0000000010100000;
   dx4=dx3;
- 
-  
-
 }
 
 void loop() {
